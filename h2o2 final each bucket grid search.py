@@ -146,7 +146,7 @@ all_models = gbm_cv3.cross_validation_models()
 print("Total cross validation models: " + str(len(all_models)))
 
 
-# In[ ]:
+# In[18]:
 
 
 ## Depth 10 is usually plenty of depth for most datasets, but you never know
@@ -193,14 +193,14 @@ grid.train(x=x,
            validation_frame = valid)
 
 
-# In[ ]:
+# In[19]:
 
 
 ## by default, display the grid search results sorted by increasing logloss (since this is a classification task)
 print grid
 
 
-# In[ ]:
+# In[20]:
 
 
 
@@ -209,7 +209,7 @@ sorted_grid = grid.get_grid(sort_by='auc',decreasing=True)
 print(sorted_grid)
 
 
-# In[ ]:
+# In[21]:
 
 
 
@@ -221,7 +221,7 @@ print "MaxDepth", new_max
 print "MinDepth", new_min
 
 
-# In[ ]:
+# In[22]:
 
 
 new_min=1
@@ -248,7 +248,7 @@ search_criteria_tune = {'strategy': "RandomDiscrete",
            
 
 
-# In[ ]:
+# In[23]:
 
 
 gbm_final_grid = H2OGradientBoostingEstimator(distribution='bernoulli',
@@ -294,7 +294,7 @@ final_grid.train(x=x,
 print final_grid
 
 
-# In[ ]:
+# In[24]:
 
 
 
@@ -304,7 +304,7 @@ sorted_final_grid = final_grid.get_grid(sort_by='auc',decreasing=True)
 print sorted_final_grid
 
 
-# In[ ]:
+# In[25]:
 
 
 
@@ -314,7 +314,7 @@ performance_best_model = best_model.model_performance(test)
 print performance_best_model.auc()
 
 
-# In[ ]:
+# In[26]:
 
 
 
@@ -324,7 +324,7 @@ for key, value in best_model.params.iteritems():
 params_list
 
 
-# In[ ]:
+# In[27]:
 
 
 gbm = h2o.get_model(sorted_final_grid.sorted_metric_table()['model_ids'][0])
@@ -336,7 +336,7 @@ for key in new_params.keys():
 gbm_best = H2OGradientBoostingEstimator()
 
 
-# In[ ]:
+# In[28]:
 
 
 for key in params.keys():
